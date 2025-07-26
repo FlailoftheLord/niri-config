@@ -22,7 +22,7 @@ input {
 
     mouse {
         // off
-         natural-scroll
+        natural-scroll
         // accel-speed 0.2
         // accel-profile "flat"
         // scroll-method "no-scroll"
@@ -32,7 +32,6 @@ input {
 output "DP-1" {
     // off
     mode "1920x1080@144.000"
-
     scale 1
     transform "normal"
     position x=0 y=0
@@ -40,13 +39,9 @@ output "DP-1" {
 
 output "DP-2" {
     // off
-
     mode "1920x1080@144.000"
-
     scale 1
-
     transform "normal"
-
     position x=1920 y=0
 }
 
@@ -127,9 +122,11 @@ layout {
     }
 }
 
-// my two monitors and their lil waybars :3
-spawn-at-startup "waybar" "--config" "$HOME/.config/waybar/config_dp1.jsonc"
-spawn-at-startup "waybar" "--config" "$HOME/.config/waybar/config_dp2.jsonc"
+
+spawn-at-startup "$HOME/.config/waybar/start_waybar.fish"
+spawn-at-startup "$HOME/.config/custom/niri-nm-applet.fish"
+//spawn-at-startup "redshift-gtk"
+spawn-at-startup "steam"
 
 
 screenshot-path "~/Pictures/Screenshots/Screenshot_%Y-%m-%d_%H-%M-%S.png"
@@ -139,10 +136,23 @@ animations {
     // slowdown 3.0
 }
 
+// force second monitor & maximized
 window-rule {
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
+    match app-id=r#"steam$"#
+
+    open-on-output "DP-2"
+    default-column-width { proportion 1.0; }
 }
+
+// fullscreen game list
+window-rule {
+    match title=r#"Pal$"#
+    match title=r#"Genshin$"#
+    match title=r#"Honkai$"#
+    match title=r#"Zenless$"#
+    open-fullscreen true
+}
+
 
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"

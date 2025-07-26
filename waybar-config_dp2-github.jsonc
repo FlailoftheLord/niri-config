@@ -27,6 +27,7 @@
         "on-click-right": "killall fuzzel"
     },
     "clock": {
+        // "timezone": "America/New_York",
         "format": "{:%A, %B %d, %Y -- %H:%M.%S}",
         "tooltip-format": "<big>{:%B %d, %Y}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}",
@@ -79,8 +80,8 @@
         "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
         "menu-actions": {
             "logout": "niri msg action quit",
-            "shutdown": "shutdown",
-            "reboot": "reboot",
+            "shutdown": "$HOME/.config/custom/poweroff.fish",
+            "reboot": "$HOME/.config/custom/reboot.fish",
             "suspend": "systemctl suspend",
             "hibernate": "systemctl hibernate"
         }
